@@ -49,7 +49,7 @@ taxRate = 6 / 100
 ----
 
 -- | Fixed
-fixedPfr = 26545
+fixedPfr = 32448
 
 -- | Starting from this you pay extra
 extraFromPfr = 300000
@@ -58,7 +58,7 @@ extraFromPfr = 300000
 extraRatePfr = 1 / 100
 
 -- | You won’t pay more than this
-maxPfr = 212360
+maxPfr = 259584
 
 
 ----
@@ -66,7 +66,7 @@ maxPfr = 212360
 ----
 
 -- | Fxed
-fixedOms = 5840
+fixedOms = 8426
 
 --------------------------------------------------------------------------------
 
