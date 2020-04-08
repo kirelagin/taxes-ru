@@ -99,14 +99,16 @@ netIncome patMonths = realIncome - (insuranceY patMonths + taxesY patMonths) / f
 
 main :: IO ()
 main = do
-    putStrLn $ "Your income: " ++ showMoney realIncome
+    putStrLn $ "Monthly income: " ++ showMoney realIncome
     putStrLn ""
-    forM_ results $ \(n, inc) -> putStrLn $ show n ++ ":\t" ++ showMoney inc
+    putStrLn "Taxes total:"
+    forM_ taxesTotal $ \(n, taxes) -> putStrLn $ "  " ++ show n ++ ":\t" ++ showMoney taxes
     putStrLn ""
-    putStrLn $ "Best: " ++ show bestN ++ " months with patent; net = " ++ showMoney bestInc
-    putStrLn $ "  Diff (no patent):   " ++ showMoney (bestInc - netIncome 0)
-    putStrLn $ "  Diff (full patent): " ++ showMoney (bestInc - netIncome 12)
+    putStrLn $ "Best: " ++ show bestN ++ " months with patent; net monthly income = " ++ showMoney bestInc
+    putStrLn $ "  Diff per month (no patent):   " ++ showMoney (bestInc - netIncome 0)
+    putStrLn $ "  Diff per month (full patent): " ++ showMoney (bestInc - netIncome 12)
   where
+    taxesTotal = map (\n -> (n, taxesY n + insuranceY n)) [0..12]
     results = map (\n -> (n, netIncome n)) [0..12]
     (bestN, bestInc) = maximumBy (comparing snd) results
 
